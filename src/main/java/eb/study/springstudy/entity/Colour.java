@@ -1,8 +1,5 @@
 package eb.study.springstudy.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -11,7 +8,7 @@ public class Colour {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    private String colour;
+    private String carColour;
 
     @OneToMany
     private Set<OwnedVehicle> ownedVehicles;
@@ -24,11 +21,11 @@ public class Colour {
         this.id = id;
     }
 
-    public String getColour() {
-        return colour;
+    public String getCarColour() {
+        return carColour;
     }
 
-    public void setColour(String colour) {
-        this.colour = colour;
+    public void setCarColour(String colour) {
+        this.carColour = colour;
     }
 }
