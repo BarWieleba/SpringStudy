@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: postgres
+  datasource:
+    #    url: jdbc:postgresql://26.215.168.106:5432/mementauto
+    url: jdbc:postgresql://localhost:5432/springstudy
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+logging:
+  file:
+    name: springstudy.log
+server:
+  port: 8080
+
