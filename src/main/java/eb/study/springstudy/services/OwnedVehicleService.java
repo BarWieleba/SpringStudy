@@ -50,10 +50,10 @@ public class OwnedVehicleService {
     private OwnedVehicle mapper(OwnedVehicleDto dto) {
         OwnedVehicle ownedVehicle = new OwnedVehicle();
         ownedVehicle.setProductionDate(dto.getProductionDate());
-        ownedVehicle.setFkVehicle(vehicleRepository.getReferenceById(dto.getFkVehicleId()));
-        ownedVehicle.setFkBodyStyle(bodyStyleRepository.getReferenceById(dto.getFkBodyStyleId()));
-        ownedVehicle.setFkOwner(ownerRepository.getReferenceById(dto.getFkOwnerId()));
-        ownedVehicle.setFkColour(colourRepository.getReferenceById(dto.getFkColourId()));
+        ownedVehicle.setFkVehicle(vehicleRepository.findById(dto.getFkVehicleId()).get());
+        ownedVehicle.setFkBodyStyle(bodyStyleRepository.findById(dto.getFkBodyStyleId()).get());
+        ownedVehicle.setFkOwner(ownerRepository.findById(dto.getFkOwnerId()).get());
+        ownedVehicle.setFkColour(colourRepository.findById(dto.getFkColourId()).get());
         return ownedVehicle;
     }
 }

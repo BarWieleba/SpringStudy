@@ -42,7 +42,7 @@ public class AddressService {
         address.setStreet(dto.getStreet());
         address.setHouseNumber(dto.getHouseNumber());
         address.setApartmentNumber(dto.getApartmentNumber());
-        address.setFkOwner(ownerRepository.getReferenceById(dto.getFkOwnerId()));
+        address.setFkOwner(ownerRepository.findById(dto.getFkOwnerId()).get());
         return address;
     }
 }
