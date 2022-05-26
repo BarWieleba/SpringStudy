@@ -7,8 +7,6 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
 public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
