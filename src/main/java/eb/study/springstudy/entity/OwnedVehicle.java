@@ -17,5 +17,4 @@ public class OwnedVehicle {
     private BodyStyle fkBodyStyle;
     @ManyToOne
     private Colour fkColour;
-
 }

@@ -7,8 +7,6 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
 public class BodyStyle {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

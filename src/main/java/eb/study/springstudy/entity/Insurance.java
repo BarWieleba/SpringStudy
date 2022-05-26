@@ -1,8 +1,5 @@
 package eb.study.springstudy.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -13,7 +10,7 @@ public class Insurance {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @ManyToOne
-    private OwnedVehicle vehicle;
+    private OwnedVehicle fkVehicle;
     private Date startDate;
     private Date expiration;
     @ManyToOne
@@ -29,12 +26,12 @@ public class Insurance {
         this.id = id;
     }
 
-    public OwnedVehicle getVehicle() {
-        return vehicle;
+    public OwnedVehicle getFkVehicle() {
+        return fkVehicle;
     }
 
-    public void setVehicle(OwnedVehicle vehicle) {
-        this.vehicle = vehicle;
+    public void setFkVehicle(OwnedVehicle vehicle) {
+        this.fkVehicle = vehicle;
     }
 
     public Date getStartDate() {
