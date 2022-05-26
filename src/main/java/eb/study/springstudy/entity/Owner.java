@@ -2,6 +2,7 @@ package eb.study.springstudy.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,6 +15,7 @@ public class Owner {
     private Long id;
     private String name;
     private String surname;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthdate;
     private Long pesel;
     @OneToMany
