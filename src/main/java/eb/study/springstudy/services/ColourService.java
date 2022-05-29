@@ -6,6 +6,9 @@ import eb.study.springstudy.repository.ColourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ColourService {
     @Autowired
@@ -20,5 +23,17 @@ public class ColourService {
         Colour colour = new Colour();
         colour.setCarColour(dto.getCarColour());
         return colour;
+    }
+
+    public List<Colour> saveColours(List<ColourDto> dtos){
+        List<Colour> colours = new ArrayList<>();
+        for(ColourDto colourDto : dtos){
+            colours.add(mapper(colourDto));
+        }
+        return colourRepository.saveAll(colours);
+    }
+
+    public List<Colour> getColours(){
+        return colourRepository.findAll();
     }
 }

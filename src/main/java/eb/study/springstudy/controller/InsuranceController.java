@@ -15,7 +15,7 @@ public class InsuranceController {
     @Autowired
     InsuranceService insuranceService;
 
-    @PostMapping("/saveInsurance")
+    @PostMapping("/saveInsurances")
     public ResponseEntity<List<Insurance>> saveInsurances(@RequestBody List<InsuranceDto> insuranceDtos) {
         return ResponseEntity.ok(insuranceService.saveInsurances(insuranceDtos));
     }
