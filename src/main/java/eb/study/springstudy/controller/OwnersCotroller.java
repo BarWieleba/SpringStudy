@@ -19,12 +19,12 @@ public class OwnersCotroller {
     @Autowired
     private OwnerService ownerService;
 
-    @PostMapping("/save")
+    @PostMapping("/saveOwners")
     public ResponseEntity<List<Owner>> saveOwners(@RequestBody List<OwnerDto> ownerDtos){
         return ResponseEntity.ok(ownerService.saveOwners(ownerDtos));
     }
 
-    @PostMapping("/saveOwners")
+    @PostMapping("/saveOwner")
     public ResponseEntity<Owner> saveOwner(@RequestBody OwnerDto ownerDto){
         return ResponseEntity.ok(ownerService.saveOwner(ownerDto));
     }
