@@ -1,7 +1,6 @@
 package eb.study.springstudy.dto;
 
 import lombok.*;
-
 import javax.persistence.*;
 
 @Data
