@@ -1,12 +1,13 @@
 package eb.study.springstudy.dto;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AddressDto {
     private Long id;
     private String postalCode;

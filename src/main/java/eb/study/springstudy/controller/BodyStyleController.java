@@ -5,10 +5,7 @@ import eb.study.springstudy.entity.BodyStyle;
 import eb.study.springstudy.services.BodyStyleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,12 +16,12 @@ public class BodyStyleController {
     BodyStyleService bodyStyleService;
 
     @PostMapping("/saveBodyStyles")
-    public ResponseEntity<List<BodyStyle>> saveBodyStyles(List<BodyStyleDto> bodyStyleDtos) {
+    public ResponseEntity<List<BodyStyle>> saveBodyStyles(@RequestBody  List<BodyStyleDto> bodyStyleDtos) {
         return ResponseEntity.ok(bodyStyleService.saveBodyStyles(bodyStyleDtos));
     }
 
     @PostMapping("/saveBodyStyle")
-    public ResponseEntity<BodyStyle> saveBodyStyle(BodyStyleDto bodyStyleDto) {
+    public ResponseEntity<BodyStyle> saveBodyStyle(@RequestBody BodyStyleDto bodyStyleDto) {
         return ResponseEntity.ok(bodyStyleService.saveBodyStyle(bodyStyleDto));
     }
 

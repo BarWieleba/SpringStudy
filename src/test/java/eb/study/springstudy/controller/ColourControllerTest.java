@@ -1,8 +1,7 @@
 package eb.study.springstudy.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import eb.study.springstudy.entity.Colour;
+import eb.study.springstudy.dto.ColourDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -33,34 +34,29 @@ class ColourControllerTest {
         mvc = MockMvcBuilders.standaloneSetup(colourController).build();
     }
 
-    public List<Colour> generate() {
-        List<Colour> lista = new ArrayList<>();
-        lista.add(Colour.builder().id(1L).carColour("żółty").build());
-        lista.add(Colour.builder().id(2L).carColour("niebieski").build());
-        lista.add(Colour.builder().id(3L).carColour("zielony").build());
-        lista.add(Colour.builder().id(4L).carColour("fioletowy").build());
-        lista.add(Colour.builder().id(5L).carColour("biały").build());
-        lista.add(Colour.builder().id(6L).carColour("czarny").build());
-        lista.add(Colour.builder().id(7L).carColour("czerwony").build());
-        lista.add(Colour.builder().id(8L).carColour("różowy").build());
-        lista.add(Colour.builder().id(9L).carColour("srebry").build());
-        lista.add(Colour.builder().id(10L).carColour("złoty").build());
+    public List<ColourDto> generate() {
+        List<ColourDto> lista = new ArrayList<>();
+        lista.add(ColourDto.builder().id(1L).carColour("żółty").build());
+        lista.add(ColourDto.builder().id(2L).carColour("niebieski").build());
+        lista.add(ColourDto.builder().id(3L).carColour("zielony").build());
+        lista.add(ColourDto.builder().id(4L).carColour("fioletowy").build());
+        lista.add(ColourDto.builder().id(5L).carColour("biały").build());
+        lista.add(ColourDto.builder().id(6L).carColour("czarny").build());
+        lista.add(ColourDto.builder().id(7L).carColour("czerwony").build());
+        lista.add(ColourDto.builder().id(8L).carColour("różowy").build());
+        lista.add(ColourDto.builder().id(9L).carColour("srebry").build());
+        lista.add(ColourDto.builder().id(10L).carColour("złoty").build());
         return lista;
     }
 
-    public String mapper() throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(generate());
-    }
 
     @Test
     void saveColours() throws Exception {
         try {
-            String json = mapper();
-            MvcResult mvcResult = null;
+            String json = new ObjectMapper().writeValueAsString(generate());
             int i = 1;
             long start1 = System.nanoTime();
-            mvcResult = mvc.perform(post("/study/colour/saveColours")
+            MvcResult mvcResult = mvc.perform(post("/study/colour/saveColours")
                             .contentType(MediaType.APPLICATION_JSON).content(json))
                     .andExpect(status().isOk()).andReturn();
             long end1 = System.nanoTime();
