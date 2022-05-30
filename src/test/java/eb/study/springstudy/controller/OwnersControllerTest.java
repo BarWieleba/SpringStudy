@@ -49,7 +49,6 @@ class OwnersControllerTest {
         dtos.add(OwnerDto.builder().id(8L).name("Zoja").surname("Szczepańska").birthdate(Date.valueOf("1997-08-07")).pesel(97080777609L).build());
         dtos.add(OwnerDto.builder().id(9L).name("Anastazja").surname("Grabowska").birthdate(Date.valueOf("1944-02-12")).pesel(44021207228L).build());
         dtos.add(OwnerDto.builder().id(10L).name("Patrycja").surname("Michalska").birthdate(Date.valueOf("1987-12-21")).pesel(87122160726L).build());
-        dtos.add(OwnerDto.builder().id(11L).name("Judyta").surname("Jasińska").birthdate(Date.valueOf("1963-01-27")).pesel(63012711304L).build());
 
         return dtos;
     }
