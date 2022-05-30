@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class BodyStyleControllerTest{
+class BodyStyleControllerTest {
     final Logger log = LoggerFactory.getLogger(BodyStyleControllerTest.class);
 
     @Autowired
@@ -37,7 +37,7 @@ class BodyStyleControllerTest{
         mockMvc = MockMvcBuilders.standaloneSetup(bodyStyleController).build();
     }
 
-    public List<BodyStyleDto> generate(){
+    private List<BodyStyleDto> generate(){
         List<BodyStyleDto> bodyStyleDtos = new ArrayList<>();
         bodyStyleDtos.add(BodyStyleDto.builder().id(1L).style("Buggy").doorNumber(2).build());
         bodyStyleDtos.add(BodyStyleDto.builder().id(2L).style("Cabriolet").doorNumber(2).build());

@@ -39,7 +39,7 @@ class ColourControllerTest {
         mvc = MockMvcBuilders.standaloneSetup(colourController).build();
     }
 
-    public List<ColourDto> generate() {
+    private List<ColourDto> generate() {
         List<ColourDto> lista = new ArrayList<>();
         lista.add(ColourDto.builder().id(1L).carColour("żółty").build());
         lista.add(ColourDto.builder().id(2L).carColour("niebieski").build());
