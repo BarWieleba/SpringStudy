@@ -5,6 +5,8 @@ import eb.study.springstudy.entity.OwnedVehicle;
 import eb.study.springstudy.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +47,16 @@ public class OwnedVehicleService {
 
     public List<OwnedVehicle> getOwnedVehicles() {
         return ownedVehicleRepository.findAll();
+    }
+
+    @Transactional
+    public OwnedVehicle updateOwnedVehicle(@RequestBody OwnedVehicleDto dto) {
+        Integer updatedOwnedVehicleId = ownedVehicleRepository.updateOwnedVehicleById(dto.getFkColourId(), dto.getFkBodyStyleId(), dto.getId());
+        return ownedVehicleRepository.findById(updatedOwnedVehicleId.longValue()).get();
+    }
+
+    public void deleteOwnedVehicle(@RequestBody OwnedVehicleDto dto) {
+        ownedVehicleRepository.deleteById(dto.getId());
     }
 
     private OwnedVehicle mapper(OwnedVehicleDto dto) {

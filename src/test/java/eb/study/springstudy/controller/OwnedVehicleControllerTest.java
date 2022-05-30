@@ -2,6 +2,7 @@ package eb.study.springstudy.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import eb.study.springstudy.dto.OwnedVehicleDto;
+import eb.study.springstudy.entity.OwnedVehicle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -55,7 +56,7 @@ class OwnedVehicleControllerTest {
         String json = new ObjectMapper().writeValueAsString(generate());
 
         long start = System.nanoTime();
-        MvcResult mvcResult = this.mockMvc.perform(post("/study/ownedvehicles/saveOwnedvehicles")
+        MvcResult mvcResult = this.mockMvc.perform(post("/study/ownedvehicles/saveOwnedVehicles")
                         .contentType(MediaType.APPLICATION_JSON).content(json))
                 .andExpect(status().isOk()).andReturn();
         long end = System.nanoTime();
@@ -65,5 +66,34 @@ class OwnedVehicleControllerTest {
 
     @Test
     void getOwnedVehicles() {
+    }
+
+    @Test
+    void updateOwnedVehicle() throws Exception{
+        OwnedVehicleDto dtoToUpdate = OwnedVehicleDto.builder().id(1L).fkBodyStyleId(2L).fkColourId(2L).build();
+        String json = new ObjectMapper().writeValueAsString(dtoToUpdate);
+
+        long start = System.nanoTime();
+        MvcResult mvcResult = this.mockMvc.perform(put("/study/ownedvehicles/updateOwnedVehicle")
+                        .contentType(MediaType.APPLICATION_JSON).content(json))
+                .andExpect(status().isOk()).andReturn();
+        long end = System.nanoTime();
+        System.out.println("Elapsed Time in nano seconds: " + (end - start));
+        assertEquals(mvcResult.getResponse().getStatus(), 200);
+    }
+
+    @Test
+    void deleteOwnedVehicle() throws Exception {
+        OwnedVehicleDto dtoToDelete = OwnedVehicleDto.builder().id(2L).build();
+        String json = new ObjectMapper().writeValueAsString(dtoToDelete);
+
+        long start = System.nanoTime();
+        MvcResult mvcResult = this.mockMvc.perform(delete("/study/ownedvehicles/deleteOwnedVehicle")
+                        .contentType(MediaType.APPLICATION_JSON).content(json))
+                .andExpect(status().isOk()).andReturn();
+        long end = System.nanoTime();
+        System.out.println("Elapsed Time in nano seconds: " + (end - start));
+        assertEquals(mvcResult.getResponse().getStatus(), 200);
+
     }
 }
