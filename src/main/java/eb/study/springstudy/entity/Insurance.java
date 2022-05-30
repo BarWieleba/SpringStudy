@@ -7,7 +7,6 @@ import java.util.Set;
 @Entity
 public class Insurance {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @ManyToOne
     private OwnedVehicle fkVehicle;

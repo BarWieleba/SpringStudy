@@ -6,7 +6,6 @@ import java.util.Date;
 @Entity
 public class OwnedVehicle {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @ManyToOne
     private Owner fkOwner;

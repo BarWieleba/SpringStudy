@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Setter
 public class Address {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String postalCode;
     private String city;

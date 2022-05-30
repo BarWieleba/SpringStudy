@@ -1,7 +1,5 @@
 package eb.study.springstudy.entity;
 
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -9,7 +7,6 @@ import java.util.Set;
 @Entity
 public class BodyStyle {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String style;
     private Integer doorNumber;

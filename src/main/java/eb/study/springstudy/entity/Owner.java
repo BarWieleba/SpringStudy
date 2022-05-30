@@ -1,7 +1,5 @@
 package eb.study.springstudy.entity;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -11,7 +9,6 @@ import java.util.Set;
 @Entity
 public class Owner {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String name;
     private String surname;
