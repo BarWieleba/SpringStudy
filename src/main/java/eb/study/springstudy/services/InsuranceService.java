@@ -8,6 +8,7 @@ import eb.study.springstudy.repository.OwnedVehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,4 +50,11 @@ public class InsuranceService {
         insurance.setFkOwnedVehicle(ownedVehicleRepository.findById(dto.getFkOwnedVehicleId()).get());
         return insurance;
     }
+
+    @Transactional
+    public void updateInsuranceExpirationAndStartDate(InsuranceDto newInsuranceDto){
+        insuranceRepository.updateExpirationAndStartDate(newInsuranceDto.getId(), newInsuranceDto.getExpiration(), newInsuranceDto.getStartDate());
+    }
+
+
 }

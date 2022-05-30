@@ -15,7 +15,10 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -68,6 +71,50 @@ class InsuranceControllerTest {
         } catch (Exception e) {
             log.error(e.getMessage());
         }
+    }
+
+
+    @Test
+    void updateInsurance() {
+
+        try {
+            LocalDate date = LocalDate.parse("2010-01-01");
+
+            List<Long> times = new ArrayList<>();
+            LocalDate nextDate = date;
+            for(int i=0; i<50; i++){
+                nextDate = nextDate.plusDays(1);
+                Date startDate = Date.valueOf(nextDate);
+
+                Date expirationDate = Date.valueOf(nextDate.plusDays(1));
+                String json = new ObjectMapper().writeValueAsString(InsuranceDto.builder().id(1L).startDate(startDate).expiration(expirationDate).fkOwnedVehicleId(1L).fkTypeId(1L).build());
+                MvcResult mvcResult = null;
+                long start1 = System.nanoTime();
+                mvcResult = mockMvc.perform(post("/study/insurance/updateInsurance")
+                                .content(json)
+                                .contentType(MediaType.APPLICATION_JSON))
+                        .andExpect(status().isOk()).andReturn();
+                long end1 = System.nanoTime();
+                long result = end1 - start1;
+                System.out.println("Elapsed Time in nano seconds: " + result);
+                times.add(result);
+                assertEquals(mvcResult.getResponse().getStatus(), 200);
+            }
+
+            long suma = 0L;
+            for(long number: times){
+                suma = number;
+                suma = Long.sum(number, suma);
+            }
+            long mean= suma/50;
+
+            System.out.println("Suma"+suma+" Srednia: "+ mean+ " Wyniki: "+String.valueOf(times));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
 
     }
 }

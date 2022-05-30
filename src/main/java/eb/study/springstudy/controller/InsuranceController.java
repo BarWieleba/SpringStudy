@@ -29,4 +29,9 @@ public class InsuranceController {
     public ResponseEntity<List<Insurance>> getInsurances() {
         return ResponseEntity.ok(insuranceService.getInsurances());
     }
+
+    @PostMapping("/updateInsurance")
+    public void updateInsurance( @RequestBody InsuranceDto newInsuranceDto){
+        insuranceService.updateInsuranceExpirationAndStartDate(newInsuranceDto);
+    }
 }
