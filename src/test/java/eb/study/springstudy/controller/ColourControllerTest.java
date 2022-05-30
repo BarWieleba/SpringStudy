@@ -2,8 +2,11 @@ package eb.study.springstudy.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import eb.study.springstudy.dto.ColourDto;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +25,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 class ColourControllerTest {
+
+    final Logger log = LoggerFactory.getLogger(ColourControllerTest.class);
 
     @Autowired
     private MockMvc mvc;
@@ -54,7 +59,6 @@ class ColourControllerTest {
     void saveColours() throws Exception {
         try {
             String json = new ObjectMapper().writeValueAsString(generate());
-            int i = 1;
             long start1 = System.nanoTime();
             MvcResult mvcResult = mvc.perform(post("/study/colour/saveColours")
                             .contentType(MediaType.APPLICATION_JSON).content(json))
@@ -63,7 +67,7 @@ class ColourControllerTest {
             System.out.println("Elapsed Time in nano seconds: " + (end1 - start1));
             assertEquals(mvcResult.getResponse().getStatus(), 200);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+           log.error(e.getMessage());
         }
 
 

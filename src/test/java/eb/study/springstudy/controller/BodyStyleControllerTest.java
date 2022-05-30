@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import eb.study.springstudy.dto.BodyStyleDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +16,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -23,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 class BodyStyleControllerTest{
-    final Logger log = Logger.getLogger(getClass().getName());
+    final Logger log = LoggerFactory.getLogger(BodyStyleControllerTest.class);
 
     @Autowired
     private MockMvc mockMvc;
@@ -67,7 +68,7 @@ class BodyStyleControllerTest{
             System.out.println("Elapsed Time in nano seconds: " + (end1 - start1));
             assertEquals(mvcResult.getResponse().getStatus(), 200);
         } catch (Exception e) {
-            log.info(e.getMessage());
+            log.error(e.getMessage());
         }
 
     }
