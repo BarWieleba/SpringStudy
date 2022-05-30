@@ -33,6 +33,7 @@ public class VehicleService {
     }
     private Vehicle mapper(VehicleDto dto) {
         Vehicle vehicle = new Vehicle();
+        vehicle.setId(dto.getId());
         vehicle.setBrand(dto.getBrand());
         vehicle.setModel(dto.getModel());
         return vehicle;

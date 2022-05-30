@@ -34,6 +34,7 @@ public class OwnerService {
 
     private Owner mapper(OwnerDto dto) {
         Owner owner = new Owner();
+        owner.setId(dto.getId());
         owner.setName(dto.getName());
         owner.setSurname(dto.getSurname());
         owner.setBirthdate(dto.getBirthdate());

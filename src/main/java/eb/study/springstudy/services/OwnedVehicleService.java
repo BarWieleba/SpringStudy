@@ -49,6 +49,7 @@ public class OwnedVehicleService {
 
     private OwnedVehicle mapper(OwnedVehicleDto dto) {
         OwnedVehicle ownedVehicle = new OwnedVehicle();
+        ownedVehicle.setId(dto.getId());
         ownedVehicle.setProductionDate(dto.getProductionDate());
         ownedVehicle.setFkVehicle(vehicleRepository.findById(dto.getFkVehicleId()).get());
         ownedVehicle.setFkBodyStyle(bodyStyleRepository.findById(dto.getFkBodyStyleId()).get());

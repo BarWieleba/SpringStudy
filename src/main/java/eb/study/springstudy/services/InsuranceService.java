@@ -42,6 +42,7 @@ public class InsuranceService {
 
     private Insurance mapper(InsuranceDto dto) {
         Insurance insurance = new Insurance();
+        insurance.setId(dto.getId());
         insurance.setStartDate(dto.getStartDate());
         insurance.setExpiration(dto.getExpiration());
         insurance.setFkType(insuranceTypeRepository.findById(dto.getFkTypeId()).get());

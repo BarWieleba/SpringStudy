@@ -34,6 +34,7 @@ public class BodyStyleService {
 
     private BodyStyle mapper(BodyStyleDto dto) {
         BodyStyle bodyStyle = new BodyStyle();
+        bodyStyle.setId(dto.getId());
         bodyStyle.setDoorNumber(dto.getDoorNumber());
         bodyStyle.setStyle(dto.getStyle());
         return bodyStyle;

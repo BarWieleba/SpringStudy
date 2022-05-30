@@ -37,6 +37,7 @@ public class AddressService {
 
     private Address mapper(AddressDto dto) {
         Address address = new Address();
+        address.setId(dto.getId());
         address.setPostalCode(dto.getPostalCode());
         address.setCity(dto.getCity());
         address.setStreet(dto.getStreet());

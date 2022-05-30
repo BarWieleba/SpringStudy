@@ -35,6 +35,7 @@ public class InsuranceTypeService {
 
     private InsuranceType mapper(InsuranceTypeDto dto) {
         InsuranceType insuranceType = new InsuranceType();
+        insuranceType.setId(dto.getId());
         insuranceType.setType(dto.getType());
         insuranceType.setCost(dto.getCost());
         return insuranceType;

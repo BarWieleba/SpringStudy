@@ -21,6 +21,7 @@ public class ColourService {
 
     private Colour mapper(ColourDto dto) {
         Colour colour = new Colour();
+        colour.setId(dto.getId());
         colour.setCarColour(dto.getCarColour());
         return colour;
     }
