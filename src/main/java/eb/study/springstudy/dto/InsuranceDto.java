@@ -13,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class InsuranceDto {
     private Long id;
-    private Long fkVehicleId;
+    private Long fkOwnedVehicleId;
     private Date startDate;
     private Date expiration;
     private Long fkTypeId;

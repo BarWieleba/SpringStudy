@@ -46,7 +46,7 @@ public class InsuranceService {
         insurance.setStartDate(dto.getStartDate());
         insurance.setExpiration(dto.getExpiration());
         insurance.setFkType(insuranceTypeRepository.findById(dto.getFkTypeId()).get());
-        insurance.setFkVehicle(ownedVehicleRepository.findById(dto.getFkVehicleId()).get());
+        insurance.setFkOwnedVehicle(ownedVehicleRepository.findById(dto.getFkOwnedVehicleId()).get());
         return insurance;
     }
 }

@@ -2,20 +2,17 @@ package eb.study.springstudy.entity;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 public class Insurance {
     @Id
     private Long id;
     @ManyToOne
-    private OwnedVehicle fkVehicle;
+    private OwnedVehicle fkOwnedVehicle;
     private Date startDate;
     private Date expiration;
     @ManyToOne
     private InsuranceType fkType;
-    @OneToMany
-    private Set<OwnedVehicle> ownedVehicles;
 
     public Long getId() {
         return id;
@@ -25,12 +22,12 @@ public class Insurance {
         this.id = id;
     }
 
-    public OwnedVehicle getFkVehicle() {
-        return fkVehicle;
+    public OwnedVehicle getFkOwnedVehicle() {
+        return fkOwnedVehicle;
     }
 
-    public void setFkVehicle(OwnedVehicle vehicle) {
-        this.fkVehicle = vehicle;
+    public void setFkOwnedVehicle(OwnedVehicle vehicle) {
+        this.fkOwnedVehicle = vehicle;
     }
 
     public Date getStartDate() {
