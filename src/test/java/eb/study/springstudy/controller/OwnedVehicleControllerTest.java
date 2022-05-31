@@ -88,7 +88,6 @@ class OwnedVehicleControllerTest {
             long end = System.currentTimeMillis();
             System.out.println("Elapsed Time in nano seconds: " + (end - start));
             times.add(end-start);
-
         }
         System.out.println("time elapsed: ");
         for(Long time : times) {
