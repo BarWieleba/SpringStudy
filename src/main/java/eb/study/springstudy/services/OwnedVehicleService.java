@@ -50,13 +50,17 @@ public class OwnedVehicleService {
     }
 
     @Transactional
-    public OwnedVehicle updateOwnedVehicle(@RequestBody OwnedVehicleDto dto) {
-        Integer updatedOwnedVehicleId = ownedVehicleRepository.updateOwnedVehicleById(dto.getFkColourId(), dto.getFkBodyStyleId(), dto.getId());
-        return ownedVehicleRepository.findById(updatedOwnedVehicleId.longValue()).get();
+    public void updateOwnedVehicle(OwnedVehicleDto dto) {
+        ownedVehicleRepository.updateOwnedVehicleById(dto.getFkColourId(), dto.getFkBodyStyleId(), dto.getId());
     }
 
     @Transactional
-    public void deleteOwnedVehicle(@RequestBody OwnedVehicleDto dto) {
+    public void updateOwnedVehicless(Long colourId, Long bodyStyleId, Long greaterThan, Long lesserThan) {
+        ownedVehicleRepository.updateOwnedVehiclesByIds(colourId, bodyStyleId, greaterThan, lesserThan);
+    }
+
+    @Transactional
+    public void deleteOwnedVehicle(OwnedVehicleDto dto) {
         ownedVehicleRepository.deleteById(dto.getId());
     }
 

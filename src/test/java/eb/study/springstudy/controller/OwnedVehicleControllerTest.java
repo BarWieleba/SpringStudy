@@ -79,22 +79,150 @@ class OwnedVehicleControllerTest {
     @Test
     void save1000OwnedVehicles50Times() throws Exception {
         String json = new ObjectMapper().writeValueAsString(generateDefinedAmount(1000));
-        List<Long> times = new ArrayList<>();
+        List<Long> savingTimes = new ArrayList<>();
+        List<Long> updateTimes = new ArrayList<>();
+        List<Long> deletingTimes = new ArrayList<>();
         for(int i = 0; i < 50; i++) {
+            //saving
             long start = System.currentTimeMillis();
             MvcResult mvcResult = this.mockMvc.perform(post("/study/ownedvehicles/saveOwnedVehicles")
                             .contentType(MediaType.APPLICATION_JSON).content(json))
                     .andExpect(status().isOk()).andReturn();
             long end = System.currentTimeMillis();
-            System.out.println("Elapsed Time in nano seconds: " + (end - start));
-            times.add(end-start);
+            System.out.println(i + ": Saving Elapsed Time in nano seconds: " + (end - start));
+            savingTimes.add(end-start);
+
+            //updating
+            long startUpdate = System.currentTimeMillis();
+            MvcResult mvcResultUpdate = this.mockMvc.perform(post("/study/ownedvehicles/updateOwnedVehicles/11/11/1/1000")
+                            .contentType(MediaType.APPLICATION_JSON).content(json))
+                    .andExpect(status().isOk()).andReturn();
+            long endUpdate = System.currentTimeMillis();
+            System.out.println("Elapsed Time in nano seconds: " + (endUpdate - startUpdate));
+            updateTimes.add(endUpdate - startUpdate);
+
+            //deleting
+            long startDelete = System.currentTimeMillis();
+            MvcResult mvcResultDelete = this.mockMvc.perform(delete("/study/ownedvehicles/deleteAll"))
+                    .andExpect(status().isOk()).andReturn();
+            long endDelete = System.currentTimeMillis();
+            System.out.println("Deleting Elapsed Time in nano seconds: " + (endDelete - startDelete));
+            deletingTimes.add(endDelete-startDelete);
 
         }
-        System.out.println("time elapsed: ");
-        for(Long time : times) {
+        System.out.println("Save time elapsed: ");
+        for(Long time : savingTimes) {
             System.out.println(time);
         }
-        assertEquals(50, times.size());
+        System.out.println("Update time elapsed: ");
+        for(Long time : updateTimes) {
+            System.out.println(time);
+        }
+        System.out.println("Delete time elapsed: ");
+        for(Long time : deletingTimes) {
+            System.out.println(time);
+        }
+        assertEquals(50, savingTimes.size());
+    }
+
+    @Test
+    void save100wnedVehicles50Times() throws Exception {
+        String json = new ObjectMapper().writeValueAsString(generateDefinedAmount(100));
+        List<Long> savingTimes = new ArrayList<>();
+        List<Long> updateTimes = new ArrayList<>();
+        List<Long> deletingTimes = new ArrayList<>();
+        for(int i = 0; i < 50; i++) {
+            //saving
+            long start = System.currentTimeMillis();
+            MvcResult mvcResult = this.mockMvc.perform(post("/study/ownedvehicles/saveOwnedVehicles")
+                            .contentType(MediaType.APPLICATION_JSON).content(json))
+                    .andExpect(status().isOk()).andReturn();
+            long end = System.currentTimeMillis();
+            System.out.println(i + ": Saving Elapsed Time in nano seconds: " + (end - start));
+            savingTimes.add(end-start);
+
+            //updating
+            long startUpdate = System.currentTimeMillis();
+            MvcResult mvcResultUpdate = this.mockMvc.perform(post("/study/ownedvehicles/updateOwnedVehicles/11/11/1/100")
+                            .contentType(MediaType.APPLICATION_JSON).content(json))
+                    .andExpect(status().isOk()).andReturn();
+            long endUpdate = System.currentTimeMillis();
+            System.out.println("Elapsed Time in nano seconds: " + (endUpdate - startUpdate));
+            updateTimes.add(endUpdate - startUpdate);
+
+            //deleting
+            long startDelete = System.currentTimeMillis();
+            MvcResult mvcResultDelete = this.mockMvc.perform(delete("/study/ownedvehicles/deleteAll"))
+                    .andExpect(status().isOk()).andReturn();
+            long endDelete = System.currentTimeMillis();
+            System.out.println("Deleting Elapsed Time in nano seconds: " + (endDelete - startDelete));
+            deletingTimes.add(endDelete-startDelete);
+
+        }
+        System.out.println("Save time elapsed: ");
+        for(Long time : savingTimes) {
+            System.out.println(time);
+        }
+        System.out.println("Update time elapsed: ");
+        for(Long time : updateTimes) {
+            System.out.println(time);
+        }
+        System.out.println("Delete time elapsed: ");
+        for(Long time : deletingTimes) {
+            System.out.println(time);
+        }
+        assertEquals(50, savingTimes.size());
+    }
+
+    @Test
+    void save10000OwnedVehicles50Times() throws Exception {
+        String json = new ObjectMapper().writeValueAsString(generateDefinedAmount(10000));
+        List<Long> savingTimes = new ArrayList<>();
+        List<Long> updatingTimes = new ArrayList<>();
+        List<Long> deletingTimes = new ArrayList<>();
+        for(int i = 0; i < 50; i++) {
+            //saving
+            long start = System.currentTimeMillis();
+            MvcResult mvcResult = this.mockMvc.perform(post("/study/ownedvehicles/saveOwnedVehicles")
+                            .contentType(MediaType.APPLICATION_JSON).content(json))
+                    .andExpect(status().isOk()).andReturn();
+            long end = System.currentTimeMillis();
+            System.out.println(i + ": Saving Elapsed Time in nano seconds: " + (end - start));
+            savingTimes.add(end-start);
+
+            //updating
+            long startUpdate = System.currentTimeMillis();
+            MvcResult mvcResultUpdate = this.mockMvc.perform(post("/study/ownedvehicles/updateOwnedVehicles/11/11/1/10000")
+                            .contentType(MediaType.APPLICATION_JSON).content(json))
+                    .andExpect(status().isOk()).andReturn();
+            long endUpdate = System.currentTimeMillis();
+            System.out.println("Elapsed Time in nano seconds: " + (endUpdate - startUpdate));
+            updatingTimes.add(endUpdate-startUpdate);
+
+            //deleting
+            long startDelete = System.currentTimeMillis();
+            MvcResult mvcResultDelete = this.mockMvc.perform(delete("/study/ownedvehicles/deleteAll"))
+                    .andExpect(status().isOk()).andReturn();
+            long endDelete = System.currentTimeMillis();
+            System.out.println("Deleting Elapsed Time in nano seconds: " + (endDelete - startDelete));
+            deletingTimes.add(endDelete-startDelete);
+
+        }
+        System.out.println("Save time elapsed: ");
+        for(Long time : savingTimes) {
+            System.out.println(time);
+        }
+
+        System.out.println("Update time elapsed: ");
+        for(Long time : updatingTimes) {
+            System.out.println(time);
+        }
+
+        System.out.println("Delete time elapsed: ");
+        for(Long time : deletingTimes) {
+            System.out.println(time);
+        }
+        assertEquals(50, savingTimes.size());
     }
 
     @Test

@@ -50,6 +50,7 @@ class BodyStyleControllerTest {
         bodyStyleDtos.add(BodyStyleDto.builder().id(8L).style("Microvan").doorNumber(5).build());
         bodyStyleDtos.add(BodyStyleDto.builder().id(9L).style("Minivan").doorNumber(5).build());
         bodyStyleDtos.add(BodyStyleDto.builder().id(10L).style("Panel van").doorNumber(2).build());
+        bodyStyleDtos.add(BodyStyleDto.builder().id(11L).style("Supercar").doorNumber(2).build());
 
         return bodyStyleDtos;
     }
