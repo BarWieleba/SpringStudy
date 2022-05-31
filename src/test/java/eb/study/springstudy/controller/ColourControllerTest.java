@@ -51,6 +51,7 @@ class ColourControllerTest {
         lista.add(ColourDto.builder().id(8L).carColour("różowy").build());
         lista.add(ColourDto.builder().id(9L).carColour("srebry").build());
         lista.add(ColourDto.builder().id(10L).carColour("złoty").build());
+        lista.add(ColourDto.builder().id(11L).carColour("kameleon").build());
         return lista;
     }
 

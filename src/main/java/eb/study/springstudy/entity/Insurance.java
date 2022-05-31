@@ -1,5 +1,8 @@
 package eb.study.springstudy.entity;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -7,7 +10,8 @@ import java.util.Date;
 public class Insurance {
     @Id
     private Long id;
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private OwnedVehicle fkOwnedVehicle;
     private Date startDate;
     private Date expiration;

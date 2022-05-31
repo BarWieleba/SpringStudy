@@ -31,8 +31,15 @@ public class OwnedVehicleController {
     }
 
     @PutMapping("/updateOwnedVehicle")
-    public ResponseEntity<OwnedVehicle> updateOwnedVehicle(@RequestBody OwnedVehicleDto dto) {
-        return ResponseEntity.ok(ownedVehicleService.updateOwnedVehicle(dto));
+    public ResponseEntity<String> updateOwnedVehicle(@RequestBody OwnedVehicleDto dto) {
+        ownedVehicleService.updateOwnedVehicle(dto);
+        return ResponseEntity.ok("updated");
+    }
+
+    @PostMapping("/updateOwnedVehicles/{colour}/{bodyStyle}/{gt}/{lt}")
+    public ResponseEntity<String> updateOwnedVehicles(@PathVariable("colour") Long colour, @PathVariable("bodyStyle") Long bodyStyle, @PathVariable("gt") Long gt, @PathVariable("lt") Long lt) {
+        ownedVehicleService.updateOwnedVehicless(colour, bodyStyle, gt, lt);
+        return ResponseEntity.ok("updated");
     }
 
     @DeleteMapping("/deleteOwnedVehicle")

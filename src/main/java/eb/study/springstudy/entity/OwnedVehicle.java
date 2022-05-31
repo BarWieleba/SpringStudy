@@ -1,5 +1,9 @@
 package eb.study.springstudy.entity;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -18,7 +22,9 @@ public class OwnedVehicle {
     @ManyToOne
     private Colour fkColour;
 
-    @OneToMany(cascade = CascadeType.DETACH)
+    @OneToMany(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "fk_owned_vehicle_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Insurance> insurances;
 
     public Long getId() {
