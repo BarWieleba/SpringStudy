@@ -13,6 +13,11 @@ import java.util.Date;
 @Repository
 public interface InsuranceRepository extends JpaRepository<Insurance, Long> {
     @Modifying
-    @Query(value = "update insurance set expiration = :expiration, start_date = :start_date where id = :id", nativeQuery = true)
-    void updateExpirationAndStartDate(@Param(value = "id") long id, @Param(value = "expiration") Date expiration, @Param(value = "start_date") Date start_date);
+    @Query(value = "update insurance set expiration = :expiration, start_date = :start_date where id >=:id1 and  id <= :id2", nativeQuery = true)
+    void updateExpirationAndStartDate( @Param(value = "expiration") Date expiration, @Param(value = "start_date") Date start_date, @Param(value = "id1") Integer id1, @Param(value = "id2") Integer id2);
+
+    @Modifying
+    @Query(value = "delete from insurance where id >= :id1 and id<=:id2", nativeQuery = true)
+    void deleteInsurances(@Param(value = "id1")Integer id1, @Param(value = "id2")Integer id2);
+
 }

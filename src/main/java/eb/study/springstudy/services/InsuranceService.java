@@ -7,7 +7,9 @@ import eb.study.springstudy.repository.InsuranceTypeRepository;
 import eb.study.springstudy.repository.OwnedVehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,8 +54,13 @@ public class InsuranceService {
     }
 
     @Transactional
-    public void updateInsuranceExpirationAndStartDate(InsuranceDto newInsuranceDto){
-        insuranceRepository.updateExpirationAndStartDate(newInsuranceDto.getId(), newInsuranceDto.getExpiration(), newInsuranceDto.getStartDate());
+    public void updateInsuranceExpirationAndStartDate(InsuranceDto newInsuranceDto, Integer id1, Integer id2){
+        insuranceRepository.updateExpirationAndStartDate(newInsuranceDto.getExpiration(), newInsuranceDto.getStartDate(), id1, id2);
+    }
+
+    @Transactional
+    public void deleteInsurances(Integer id1, Integer id2){
+        insuranceRepository.deleteInsurances(id1, id2);
     }
 
 

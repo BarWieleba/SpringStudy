@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -90,7 +91,7 @@ class InsuranceControllerTest {
                 String json = new ObjectMapper().writeValueAsString(InsuranceDto.builder().id(1L).startDate(startDate).expiration(expirationDate).fkOwnedVehicleId(1L).fkTypeId(1L).build());
                 MvcResult mvcResult = null;
                 long start1 = System.nanoTime();
-                mvcResult = mockMvc.perform(post("/study/insurance/updateInsurance")
+                mvcResult = mockMvc.perform(post("/study/insurance/updateInsurance/1/10")
                                 .content(json)
                                 .contentType(MediaType.APPLICATION_JSON))
                         .andExpect(status().isOk()).andReturn();
@@ -116,5 +117,27 @@ class InsuranceControllerTest {
 
 
 
+    }
+
+    @Test
+    void deleteInsurances() {
+        try {
+            MvcResult mvcResult = null;
+            List<Long> times = new ArrayList<>();
+            for(int i=0; i<50; i++){
+                long start1 = System.nanoTime();
+                mvcResult = mockMvc.perform(delete("/study/insurance/deleteInsurances/1/10")
+                                .contentType(MediaType.APPLICATION_JSON))
+                        .andExpect(status().isOk()).andReturn();
+                long end1 = System.nanoTime();
+                long result = end1 - start1;
+                times.add(result);
+                assertEquals(mvcResult.getResponse().getStatus(), 200);
+                saveInsurances();
+            }
+            System.out.println("Elapsed Time in nano seconds: " + times);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }
