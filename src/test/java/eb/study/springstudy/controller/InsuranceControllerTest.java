@@ -144,7 +144,7 @@ class InsuranceControllerTest {
             List<Long> times = new ArrayList<>();
             for(int i = 0; i < 50; i++) {
                 MvcResult mvcResult = null;
-                deleteFromIdToId(mvcResult, delete("/study/insurance/deleteAllInsurances"));
+                methodFromIdToId(mvcResult, delete("/study/insurance/deleteAllInsurances"));
                 String json = new ObjectMapper().writeValueAsString(generateDefinedAmount(quantity));
                 long start = System.currentTimeMillis();
                 mvcResult = saveInsurances(json);
@@ -189,7 +189,7 @@ class InsuranceControllerTest {
                 Date expirationDate = Date.valueOf(nextDate.plusDays(1));
                 String json = new ObjectMapper().writeValueAsString(InsuranceDto.builder().id(1L).startDate(startDate).expiration(expirationDate).fkOwnedVehicleId(1L).fkTypeId(1L).build());
                 long start1 = System.currentTimeMillis();
-                mvcResult = deleteFromIdToId(mvcResult, post("/study/insurance/updateInsurance/"+ id1+"/"+id2)
+                mvcResult = methodFromIdToId(mvcResult, post("/study/insurance/updateInsurance/"+ id1+"/"+id2)
                         .content(json));
                 long end1 = System.currentTimeMillis();
                 long result = end1 - start1;
@@ -205,7 +205,7 @@ class InsuranceControllerTest {
 
     private MvcResult clearAndFillTableDependingOnId2(Integer id2) throws Exception {
         MvcResult mvcResult = null;
-        deleteFromIdToId(mvcResult, delete("/study/insurance/deleteAllInsurances"));
+        methodFromIdToId(mvcResult, delete("/study/insurance/deleteAllInsurances"));
         saveInsurancesDependingOnId2(id2);
         return mvcResult;
     }
@@ -216,9 +216,14 @@ class InsuranceControllerTest {
             MvcResult mvcResult = null;
             List<Long> times = new ArrayList<>();
             for(int i=0; i<50; i++){
-                saveInsurancesDependingOnId2(id2);
+                try {
+                    mvcResult = clearAndFillTableDependingOnId2(id2);
+                }
+                catch (Exception e){
+                    log.error(e.getMessage());
+                }
                 long start1 = System.currentTimeMillis();
-                mvcResult = deleteFromIdToId(mvcResult, delete("/study/insurance/deleteInsurances/"+id1+"/"+id2));
+                mvcResult = methodFromIdToId(mvcResult, delete("/study/insurance/deleteInsurances/"+id1+"/"+id2));
                 long end1 = System.currentTimeMillis();
                 long result = end1 - start1;
                 times.add(result);
@@ -235,8 +240,8 @@ class InsuranceControllerTest {
         saveInsurances(json);
     }
 
-    private MvcResult deleteFromIdToId(MvcResult mvcResult, MockHttpServletRequestBuilder delete) throws Exception {
-        mvcResult = mockMvc.perform(delete
+    private MvcResult methodFromIdToId(MvcResult mvcResult, MockHttpServletRequestBuilder method) throws Exception {
+        mvcResult = mockMvc.perform(method
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk()).andReturn();
         return mvcResult;
