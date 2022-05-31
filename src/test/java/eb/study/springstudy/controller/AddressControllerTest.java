@@ -48,9 +48,9 @@ class AddressControllerTest {
         dtos.add(AddressDto.builder().id(8L).postalCode("52-114").city("Wrocław").street("ul. Laotańska").houseNumber(102).fkOwnerId(8L).build());
         dtos.add(AddressDto.builder().id(9L).postalCode("41-253").city("Czeladź").street("ul. Spacerowa").houseNumber(42).fkOwnerId(9L).build());
         dtos.add(AddressDto.builder().id(10L).postalCode("87-122").city("Grębocin").street("ul. Dworcowa").houseNumber(40).fkOwnerId(10L).build());
-        dtos.add(AddressDto.builder().id(11L).postalCode("60-406").city("Poznań").street("ul. Nidziańska").houseNumber(117).fkOwnerId(11L).build());
-        dtos.add(AddressDto.builder().id(12L).postalCode("42-460").city("Mierzęcice").street("ul. Wolności").houseNumber(25).fkOwnerId(1L).build());
-        dtos.add(AddressDto.builder().id(13L).postalCode("35-231").city("Rzeszów").street("ul. Dobra").houseNumber(34).fkOwnerId(2L).build());
+        dtos.add(AddressDto.builder().id(11L).postalCode("60-406").city("Poznań").street("ul. Nidziańska").houseNumber(117).fkOwnerId(1L).build());
+        dtos.add(AddressDto.builder().id(12L).postalCode("42-460").city("Mierzęcice").street("ul. Wolności").houseNumber(25).fkOwnerId(2L).build());
+        dtos.add(AddressDto.builder().id(13L).postalCode("35-231").city("Rzeszów").street("ul. Dobra").houseNumber(34).fkOwnerId(3L).build());
 
         return dtos;
     }
