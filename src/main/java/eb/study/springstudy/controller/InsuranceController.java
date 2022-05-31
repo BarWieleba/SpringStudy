@@ -40,4 +40,9 @@ public class InsuranceController {
     public void deleteInsurances(@PathVariable("id1") Integer id1, @PathVariable("id2") Integer id2){
         insuranceService.deleteInsurances(id1, id2);
     }
+
+    @DeleteMapping("/deleteAllInsurances")
+    public void deleteAllInsurances(){
+        insuranceService.deleteAllInsurances();
+    }
 }
