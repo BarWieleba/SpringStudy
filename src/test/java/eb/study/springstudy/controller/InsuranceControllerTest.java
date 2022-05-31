@@ -216,7 +216,12 @@ class InsuranceControllerTest {
             MvcResult mvcResult = null;
             List<Long> times = new ArrayList<>();
             for(int i=0; i<50; i++){
-                saveInsurancesDependingOnId2(id2);
+                try {
+                    mvcResult = clearAndFillTableDependingOnId2(id2);
+                }
+                catch (Exception e){
+                    log.error(e.getMessage());
+                }
                 long start1 = System.currentTimeMillis();
                 mvcResult = methodFromIdToId(mvcResult, delete("/study/insurance/deleteInsurances/"+id1+"/"+id2));
                 long end1 = System.currentTimeMillis();
