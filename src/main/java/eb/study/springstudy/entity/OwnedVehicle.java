@@ -2,6 +2,7 @@ package eb.study.springstudy.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 public class OwnedVehicle {
@@ -16,6 +17,9 @@ public class OwnedVehicle {
     private BodyStyle fkBodyStyle;
     @ManyToOne
     private Colour fkColour;
+
+    @OneToMany(cascade = CascadeType.DETACH)
+    private Set<Insurance> insurances;
 
     public Long getId() {
         return id;

@@ -55,8 +55,14 @@ public class OwnedVehicleService {
         return ownedVehicleRepository.findById(updatedOwnedVehicleId.longValue()).get();
     }
 
+    @Transactional
     public void deleteOwnedVehicle(@RequestBody OwnedVehicleDto dto) {
         ownedVehicleRepository.deleteById(dto.getId());
+    }
+
+    @Transactional
+    public void deleteAllOwnedVehicles() {
+        ownedVehicleRepository.deleteAll();
     }
 
     private OwnedVehicle mapper(OwnedVehicleDto dto) {

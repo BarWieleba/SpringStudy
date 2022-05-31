@@ -40,4 +40,10 @@ public class OwnedVehicleController {
         ownedVehicleService.deleteOwnedVehicle(dto);
         return ResponseEntity.ok("Deleted Owned Vehicle with Id: " + dto.getId());
     }
+
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<String> deleteOwnedVehicles() {
+        ownedVehicleService.deleteAllOwnedVehicles();
+        return ResponseEntity.ok("Deleted all");
+    }
 }

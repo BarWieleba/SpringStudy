@@ -7,7 +7,7 @@ import java.util.Date;
 public class Insurance {
     @Id
     private Long id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     private OwnedVehicle fkOwnedVehicle;
     private Date startDate;
     private Date expiration;

@@ -2,7 +2,6 @@ package eb.study.springstudy.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import eb.study.springstudy.dto.OwnedVehicleDto;
-import eb.study.springstudy.entity.OwnedVehicle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +51,18 @@ class OwnedVehicleControllerTest {
         return dtos;
     }
 
+    private List<OwnedVehicleDto> generateDefinedAmount(int amount) {
+        List<OwnedVehicleDto> dtos = new ArrayList<>();
+        LocalDate localDate = LocalDate.of(2000, 1, 1);
+
+        for(int i = 1; i <=amount; i++) {
+            long fkValue = Long.valueOf(i%10 == 0 ? 10 : i%10);
+            dtos.add(OwnedVehicleDto.builder().id(Long.valueOf(i)).fkOwnerId(fkValue).fkVehicleId(fkValue).productionDate(Date.valueOf(localDate)).fkBodyStyleId(fkValue).fkColourId(fkValue).build());
+            localDate = localDate.plusDays(1);
+        }
+        return dtos;
+    }
+
     @Test
     void saveOwnedVehicles() throws Exception {
         String json = new ObjectMapper().writeValueAsString(generate());
@@ -62,6 +74,27 @@ class OwnedVehicleControllerTest {
         long end = System.nanoTime();
         System.out.println("Elapsed Time in nano seconds: " + (end - start));
         assertEquals(mvcResult.getResponse().getStatus(), 200);
+    }
+
+    @Test
+    void save1000OwnedVehicles50Times() throws Exception {
+        String json = new ObjectMapper().writeValueAsString(generateDefinedAmount(1000));
+        List<Long> times = new ArrayList<>();
+        for(int i = 0; i < 50; i++) {
+            long start = System.currentTimeMillis();
+            MvcResult mvcResult = this.mockMvc.perform(post("/study/ownedvehicles/saveOwnedVehicles")
+                            .contentType(MediaType.APPLICATION_JSON).content(json))
+                    .andExpect(status().isOk()).andReturn();
+            long end = System.currentTimeMillis();
+            System.out.println("Elapsed Time in nano seconds: " + (end - start));
+            times.add(end-start);
+
+        }
+        System.out.println("time elapsed: ");
+        for(Long time : times) {
+            System.out.println(time);
+        }
+        assertEquals(50, times.size());
     }
 
     @Test
@@ -90,6 +123,17 @@ class OwnedVehicleControllerTest {
         long start = System.nanoTime();
         MvcResult mvcResult = this.mockMvc.perform(delete("/study/ownedvehicles/deleteOwnedVehicle")
                         .contentType(MediaType.APPLICATION_JSON).content(json))
+                .andExpect(status().isOk()).andReturn();
+        long end = System.nanoTime();
+        System.out.println("Elapsed Time in nano seconds: " + (end - start));
+        assertEquals(mvcResult.getResponse().getStatus(), 200);
+
+    }
+
+    @Test
+    void deleteAllOwnedVehicles() throws Exception {
+        long start = System.nanoTime();
+        MvcResult mvcResult = this.mockMvc.perform(delete("/study/ownedvehicles/deleteAll"))
                 .andExpect(status().isOk()).andReturn();
         long end = System.nanoTime();
         System.out.println("Elapsed Time in nano seconds: " + (end - start));
