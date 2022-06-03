@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -90,6 +91,21 @@ class InsuranceControllerTest {
     @Test
     void update10000Insurance() {
         updateInsuranceFixedQuantity(1, 10000);
+    }
+
+    @Test
+    void findAllInsurances100Rows(){
+        findAllInsurances(100);
+    }
+
+    @Test
+    void findAllInsurances1000Rows(){
+        findAllInsurances(1000);
+    }
+
+    @Test
+    void findAllInsurances10000Rows(){
+        findAllInsurances(10000);
     }
 
     private List<InsuranceDto> generate() {
@@ -201,6 +217,32 @@ class InsuranceControllerTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void findAllInsurances(Integer id2){
+        MvcResult mvcResult = null;
+        List<Long> times = new ArrayList<>();
+        /* wyczyść i uzupelnij tabele danymi */
+        try{
+            mvcResult = clearAndFillTableDependingOnId2(id2);
+        }
+        catch (Exception e){
+            log.error(e.getMessage());
+        }
+        /* mierz czas: */
+        for (int i=0; i<50; i++){
+            try {
+                long start = System.currentTimeMillis();
+                mvcResult = mockMvc.perform(get("/study/insurance/get").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
+                long end = System.currentTimeMillis();
+                times.add(end-start);
+
+                assertEquals(mvcResult.getResponse().getStatus(), 200);
+            } catch (Exception e) {
+                log.error(e.getMessage());
+            }
+        }
+        System.out.println("Elapsed Time in milli seconds: " + times);
     }
 
     private MvcResult clearAndFillTableDependingOnId2(Integer id2) throws Exception {
