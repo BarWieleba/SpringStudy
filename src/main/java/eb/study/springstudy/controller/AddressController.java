@@ -20,7 +20,7 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
-    @PostMapping("/saveAdresses")
+    @PostMapping("/saveAddresses")
     public ResponseEntity <List<Address>>saveAddresses(@RequestBody List<AddressDto> addressDto){
         return ResponseEntity.ok(addressService.saveAddresses(addressDto));
     }
