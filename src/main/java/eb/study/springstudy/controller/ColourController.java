@@ -30,4 +30,9 @@ public class ColourController {
     public ResponseEntity<List<Colour>>getColours(@RequestBody List<ColourDto> colourDtoList){
         return ResponseEntity.ok(colourService.getColours());
     }
+
+    @DeleteMapping("/deleteAll")
+    public void deleteAll(){
+        colourService.deleteAll();
+    }
 }

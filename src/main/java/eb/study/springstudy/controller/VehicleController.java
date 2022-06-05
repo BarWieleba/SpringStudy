@@ -29,4 +29,9 @@ public class VehicleController {
     public ResponseEntity<List<Vehicle>> getVehicles() {
         return ResponseEntity.ok(vehicleService.getVehicles());
     }
+
+    @DeleteMapping("/deleteAll")
+    public void deleteAll(){
+        vehicleService.deleteAll();
+    }
 }

@@ -46,4 +46,8 @@ public class AddressService {
         address.setFkOwner(ownerRepository.findById(dto.getFkOwnerId()).get());
         return address;
     }
+
+    public void deleteAll(){
+        addressRepository.deleteAll();
+    }
 }

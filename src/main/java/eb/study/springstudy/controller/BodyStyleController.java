@@ -29,4 +29,9 @@ public class BodyStyleController {
     public ResponseEntity<List<BodyStyle>> getBodyStyles() {
         return ResponseEntity.ok(bodyStyleService.getBodyStyles());
     }
+
+    @DeleteMapping("/deleteAll")
+    public void deleteAll(){
+        bodyStyleService.deleteAll();
+    }
 }

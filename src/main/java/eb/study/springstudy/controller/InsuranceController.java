@@ -41,8 +41,8 @@ public class InsuranceController {
         insuranceService.deleteInsurances(id1, id2);
     }
 
-    @DeleteMapping("/deleteAllInsurances")
-    public void deleteAllInsurances(){
-        insuranceService.deleteAllInsurances();
+    @DeleteMapping("/deleteAll")
+    public void deleteAll(){
+        insuranceService.deleteAll();
     }
 }

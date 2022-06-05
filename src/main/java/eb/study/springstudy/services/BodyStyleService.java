@@ -39,4 +39,8 @@ public class BodyStyleService {
         bodyStyle.setStyle(dto.getStyle());
         return bodyStyle;
     }
+
+    public void deleteAll(){
+        bodyStyleRepository.deleteAll();
+    }
 }

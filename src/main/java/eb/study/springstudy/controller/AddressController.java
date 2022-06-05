@@ -35,4 +35,9 @@ public class AddressController {
         return ResponseEntity.ok(addressService.getAddresses());
     }
 
+    @DeleteMapping("/deleteAll")
+    public void deleteAll(){
+        addressService.deleteAll();
+    }
+
 }

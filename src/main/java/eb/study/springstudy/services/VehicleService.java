@@ -38,4 +38,8 @@ public class VehicleService {
         vehicle.setModel(dto.getModel());
         return vehicle;
     }
+
+    public void deleteAll(){
+        vehicleRepository.deleteAll();
+    }
 }

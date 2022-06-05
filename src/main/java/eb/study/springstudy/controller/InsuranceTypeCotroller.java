@@ -30,4 +30,9 @@ public class InsuranceTypeCotroller {
     public ResponseEntity<List<InsuranceType>> getInsurances(){
         return ResponseEntity.ok(insuranceTypeService.getInsurances());
     }
+
+    @DeleteMapping("/deleteAll")
+    public void findAll(){
+        insuranceTypeService.deleteAll();
+    }
 }

@@ -64,7 +64,7 @@ public class InsuranceService {
     }
 
     @Transactional
-    public void deleteAllInsurances(){
+    public void deleteAll(){
         insuranceRepository.deleteAll();
     }
 

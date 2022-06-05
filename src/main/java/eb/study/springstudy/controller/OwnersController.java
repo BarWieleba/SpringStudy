@@ -29,4 +29,9 @@ public class OwnersController {
     public ResponseEntity<List<Owner>> getOwners(){
         return ResponseEntity.ok(ownerService.getOwners());
     }
+
+    @DeleteMapping("/deleteAll")
+    public void deleteAll(){
+        ownerService.deleteAll();
+    }
 }

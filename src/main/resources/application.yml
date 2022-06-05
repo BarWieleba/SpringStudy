@@ -3,15 +3,15 @@ spring:
     name: postgres
   datasource:
     #mysql:
-    url: jdbc:mysql://localhost:3306/springstudy
-    username: root
-    password: pass
-    driverClassName: com.mysql.cj.jdbc.Driver
+    #url: jdbc:mysql://localhost:3306/springstudy
+    #username: root
+    #password: pass
+    #driverClassName: com.mysql.cj.jdbc.Driver
     #postgre:
-    #url: jdbc:postgresql://localhost:5432/springstudy
-    #username: postgres
-    #password: password
-    #driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/springstudy
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
   jpa:
     generate-ddl: true
     hibernate:

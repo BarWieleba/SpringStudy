@@ -93,6 +93,8 @@ class InsuranceControllerTest {
         updateInsuranceFixedQuantity(1, 10000);
     }
 
+    //findALL;
+
     @Test
     void findAllInsurances100Rows(){
         findAllInsurances(100);

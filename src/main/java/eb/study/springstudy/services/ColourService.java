@@ -37,4 +37,8 @@ public class ColourService {
     public List<Colour> getColours(){
         return colourRepository.findAll();
     }
+
+    public void deleteAll(){
+        colourRepository.deleteAll();
+    }
 }

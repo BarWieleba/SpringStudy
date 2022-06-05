@@ -40,4 +40,8 @@ public class InsuranceTypeService {
         insuranceType.setCost(dto.getCost());
         return insuranceType;
     }
+
+    public void deleteAll(){
+        insuranceTypeRepository.deleteAll();
+    }
 }

@@ -41,4 +41,8 @@ public class OwnerService {
         owner.setPesel(dto.getPesel());
         return owner;
     }
+
+    public void deleteAll(){
+        ownerRepository.deleteAll();
+    }
 }
