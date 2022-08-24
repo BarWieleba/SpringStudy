@@ -2,6 +2,7 @@ package eb.study.springstudy.controller;
 
 import eb.study.springstudy.dto.OwnedVehicleDto;
 import eb.study.springstudy.entity.OwnedVehicle;
+import eb.study.springstudy.repository.OwnedVehicleResponse;
 import eb.study.springstudy.services.OwnedVehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,11 @@ public class OwnedVehicleController {
     @GetMapping("/get")
     public ResponseEntity<List<OwnedVehicle>> getOwnedVehicles() {
         return ResponseEntity.ok(ownedVehicleService.getOwnedVehicles());
+    }
+
+    @GetMapping("/selectWithJoin")
+    public ResponseEntity<List<OwnedVehicleResponse>> selectWithJoin(){
+        return ResponseEntity.ok(ownedVehicleService.selectWithJoin());
     }
 
     @PutMapping("/updateOwnedVehicle")

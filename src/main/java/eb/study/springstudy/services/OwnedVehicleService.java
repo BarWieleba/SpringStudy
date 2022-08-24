@@ -17,6 +17,9 @@ public class OwnedVehicleService {
     OwnedVehicleRepository ownedVehicleRepository;
 
     @Autowired
+    OwnedVehicleRepository ownedVehicleJoinRepository;
+
+    @Autowired
     ColourRepository colourRepository;
 
     @Autowired
@@ -78,5 +81,9 @@ public class OwnedVehicleService {
         ownedVehicle.setFkOwner(ownerRepository.findById(dto.getFkOwnerId()).get());
         ownedVehicle.setFkColour(colourRepository.findById(dto.getFkColourId()).get());
         return ownedVehicle;
+    }
+
+    public List<OwnedVehicleResponse> selectWithJoin(){
+        return ownedVehicleJoinRepository.selectWithJoin();
     }
 }
